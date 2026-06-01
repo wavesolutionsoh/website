@@ -1,0 +1,61 @@
+{
+  "containerPurpose": "Portable input container for Antigravity or another AI IDE to generate or extend a simple service-business Next.js website.",
+  "implementationTarget": {
+    "framework": "Next.js App Router",
+    "language": "TypeScript",
+    "styling": "Tailwind CSS",
+    "contentSource": "src/content/site-config.json",
+    "initialDeliverable": "One-page splash page with branding and a lead form",
+    "futureDeliverables": [
+      "About page",
+      "Services page",
+      "Contact page",
+      "Booking system integration",
+      "Email provider or CRM adapter"
+    ]
+  },
+  "visualReference": {
+    "source": "https://seekcomfortsolutions.com",
+    "doUse": [
+      "WordPress-style service-business spacing",
+      "White header and high-contrast dark hero/footer sections",
+      "Large bold hero headline",
+      "Orange CTA emphasis",
+      "Three service cards overlapping the hero",
+      "Soft off-white alternating sections",
+      "Simple footer with contact blocks"
+    ],
+    "doNotUse": [
+      "Do not copy Seek Comfort content",
+      "Do not lock the layout to HVAC",
+      "Do not use Seek Comfort colors directly",
+      "Do not use low-contrast white text on pale backgrounds"
+    ]
+  },
+  "brand": {
+    "name": "Wave Solutions LLC",
+    "logoPath": "public/images/wave-logo.png",
+    "colors": {
+      "primaryBlue": "#0077C8",
+      "accentOrange": "#F58220",
+      "deepNavy": "#062A60",
+      "softBackground": "#F5F7FB",
+      "bodyText": "#102033"
+    },
+    "font": "Montserrat"
+  },
+  "integrationPlan": {
+    "currentFormMode": "The form posts to src/app/api/lead/route.ts. It sends through Resend when RESEND_API_KEY, LEAD_TO_EMAIL, and LEAD_FROM_EMAIL are configured. Without those env vars, it returns a local demo-mode success message.",
+    "nextAdapter": "Use Resend first unless the client specifically requests SMTP, GoDaddy SMTP, or Google Workspace SMTP/OAuth.",
+    "recommendedAbstraction": "Keep provider secrets in environment variables. If future providers are added, split provider-specific logic into src/lib/lead-adapters and call it from the route handler."
+  },
+  "launchPlan": {
+    "preferredOwnership": "Client-owned Vercel account or team and client-owned Resend account.",
+    "temporaryOption": "Tony can deploy under his Vercel account for speed, point DNS to that deployment, then transfer the project later.",
+    "dnsForVercel": {
+      "apex": "A @ 76.76.21.21",
+      "www": "CNAME www cname.vercel-dns-0.com"
+    },
+    "emailDnsCaution": "Do not remove existing MX records if Gmail/GoDaddy is currently handling domain email. Add only the DNS records required by Vercel and Resend."
+  }
+}
