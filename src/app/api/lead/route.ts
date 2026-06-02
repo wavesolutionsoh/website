@@ -55,21 +55,29 @@ export async function POST(request: Request) {
   const { Resend } = await import("resend");
   const resend = new Resend(resendApiKey);
 
-  await resend.emails.send({
-    from: leadFromEmail,
-    to: leadToEmail,
-    replyTo: email,
-    subject: `New Wave Solutions lead from ${name}`,
-    html: `
-      <h1>New Wave Solutions website lead</h1>
-      <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-      <p><strong>Phone:</strong> ${escapeHtml(phone || "Not provided")}</p>
-      <p><strong>Business:</strong> ${escapeHtml(business || "Not provided")}</p>
-      <p><strong>Message:</strong></p>
-      <p>${escapeHtml(message).replaceAll("\n", "<br />")}</p>
-    `,
-  });
+  try {
+    await resend.emails.send({
+      from: leadFromEmail,
+      to: leadToEmail,
+      replyTo: email,
+      subject: `New Wave Solutions lead from ${name}`,
+      html: `
+        <h1>New Wave Solutions website lead</h1>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Phone:</strong> ${escapeHtml(phone || "Not provided")}</p>
+        <p><strong>Business:</strong> ${escapeHtml(business || "Not provided")}</p>
+        <p><strong>Message:</strong></p>
+        <p>${escapeHtml(message).replaceAll("\n", "<br />")}</p>
+      `,
+    });
+  } catch (error) {
+    console.error("Lead email delivery failed", error);
+    return NextResponse.json(
+      { message: "The form was received, but email delivery is not configured yet." },
+      { status: 502 },
+    );
+  }
 
   return NextResponse.json({ message: "Thanks. Wave will follow up soon.", mode: "sent" });
 }
