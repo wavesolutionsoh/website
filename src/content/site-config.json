@@ -1,9 +1,9 @@
 {
   "company": {
     "name": "Wave Solutions LLC",
-    "email": "Info@wave-solutions.co",
-    "phone": "440-375-WAVE (9283)",
-    "phoneHref": "+14403759283",
+    "email": "lilly@wave-solutions.co",
+    "phone": "(440) 251-2366",
+    "phoneHref": "+14402512366",
     "location": "PO Box 5041, Willowick, OH 44095"
   },
   "navigation": [
@@ -70,7 +70,7 @@
     "heading": "Tell Wave what kind of communication support your team needs.",
     "text": "Share a few details and Wave can follow up with the next step.",
     "submitLabel": "Submit",
-    "providerMode": "Email provider adapter will be wired later.",
+    "providerMode": "Secure form delivery is connected.",
     "notes": [
       "Designed for immediate conference use.",
       "Ready for future booking, email, CRM, or automation integration.",
