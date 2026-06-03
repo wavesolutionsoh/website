@@ -11,7 +11,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Wave Solutions LLC | Professional Answering & Virtual Receptionist Services",
   description:
-    "A Next.js splash page boiler for Wave Solutions LLC, built for conference lead capture and future simple-service website expansion.",
+    "Professional answering, virtual receptionist, and communication support services for responsive service-based businesses.",
   openGraph: {
     title: "Wave Solutions LLC",
     description: "Professional answering and virtual receptionist services for service-based businesses.",

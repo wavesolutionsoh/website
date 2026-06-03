@@ -214,8 +214,8 @@ function SiteFooter() {
           </div>
         </div>
         <div>
-          <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-[#0077C8]">Template Notes</h2>
-          <p className="mt-5 text-sm font-medium leading-7 text-[#4e5f70]">{siteConfig.footer.templateNote}</p>
+          <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-[#0077C8]">Service Focus</h2>
+          <p className="mt-5 text-sm font-medium leading-7 text-[#4e5f70]">{siteConfig.footer.serviceNote}</p>
         </div>
       </div>
     </footer>
