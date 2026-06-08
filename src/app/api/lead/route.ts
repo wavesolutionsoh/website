@@ -6,10 +6,27 @@ type LeadPayload = {
   phone?: unknown;
   business?: unknown;
   message?: unknown;
+  website?: unknown;
 };
+
+const maxLengths = {
+  name: 120,
+  email: 160,
+  phone: 80,
+  business: 160,
+  message: 3000,
+} as const;
 
 function asText(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
+}
+
+function isWithinLimit(value: string, limit: number): boolean {
+  return value.length <= limit;
+}
+
+function isLikelyEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
 function escapeHtml(value: string): string {
@@ -35,9 +52,28 @@ export async function POST(request: Request) {
   const phone = asText(payload.phone);
   const business = asText(payload.business);
   const message = asText(payload.message);
+  const website = asText(payload.website);
+
+  if (website) {
+    return NextResponse.json({ message: "Thanks. Wave will follow up soon.", mode: "filtered" });
+  }
 
   if (!name || !email || !message) {
     return NextResponse.json({ message: "Please include your name, email, and message." }, { status: 400 });
+  }
+
+  if (!isLikelyEmail(email)) {
+    return NextResponse.json({ message: "Please include a valid email address." }, { status: 400 });
+  }
+
+  if (
+    !isWithinLimit(name, maxLengths.name) ||
+    !isWithinLimit(email, maxLengths.email) ||
+    !isWithinLimit(phone, maxLengths.phone) ||
+    !isWithinLimit(business, maxLengths.business) ||
+    !isWithinLimit(message, maxLengths.message)
+  ) {
+    return NextResponse.json({ message: "Please shorten your submission and try again." }, { status: 400 });
   }
 
   const resendApiKey = process.env.RESEND_API_KEY;

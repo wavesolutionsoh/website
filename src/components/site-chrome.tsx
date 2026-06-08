@@ -38,7 +38,7 @@ function SiteHeader() {
     <header className="border-b border-[#d9e1ea] bg-white">
       <div className="mx-auto flex min-h-28 max-w-7xl items-center justify-between gap-5 px-5 py-4 lg:px-8">
         <Link href="/" className="relative block h-20 w-44 shrink-0" aria-label={`${siteConfig.company.name} home`}>
-          <Image src="/images/wave-logo.png" alt={siteConfig.company.name} fill priority className="object-contain object-left" />
+          <Image src="/images/wave-logo.png" alt={siteConfig.company.name} fill priority sizes="176px" className="object-contain object-left" />
         </Link>
         <nav className="hidden items-center gap-5 text-xs font-bold uppercase tracking-[0.08em] text-[#243a53] lg:flex xl:gap-7 xl:text-sm">
           {siteConfig.navigation.map((item) => (
@@ -103,7 +103,7 @@ function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.1fr_0.9fr_0.9fr]">
         <div>
           <div className="relative h-16 w-40 bg-white p-2">
-            <Image src="/images/wave-logo.png" alt={siteConfig.company.name} fill className="object-contain p-2" />
+            <Image src="/images/wave-logo.png" alt={siteConfig.company.name} fill sizes="160px" className="object-contain p-2" />
           </div>
           <p className="mt-6 max-w-md text-sm font-medium leading-7 text-[#4e5f70]">{siteConfig.footer.summary}</p>
         </div>

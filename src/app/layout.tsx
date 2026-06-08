@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import type { ReactNode } from "react";
+import { siteConfig } from "@/content/site";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -22,6 +23,25 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteConfig.company.name,
+  url: "https://wave-solutions.co",
+  email: siteConfig.company.email,
+  telephone: siteConfig.company.phoneHref,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "PO Box 5041",
+    addressLocality: "Willowick",
+    addressRegion: "OH",
+    postalCode: "44095",
+    addressCountry: "US",
+  },
+  description:
+    "Professional answering, virtual receptionist, and communication support services for responsive service-based businesses.",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,7 +49,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={montserrat.variable}>
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

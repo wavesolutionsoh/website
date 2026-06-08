@@ -10,6 +10,7 @@ type FormConfig = {
     type: string;
     placeholder: string;
     required?: boolean;
+    maxLength?: number;
   }[];
   submitLabel: string;
   providerMode: string;
@@ -58,6 +59,10 @@ export function LeadForm({ config }: LeadFormProps) {
         }
       }}
     >
+      <label className="sr-only" aria-hidden="true">
+        Website
+        <input name="website" tabIndex={-1} autoComplete="off" className="hidden" />
+      </label>
       <div className="grid gap-5 md:grid-cols-2">
         {config.fields.map((field) => (
           <label key={field.name} className={field.type === "textarea" ? "md:col-span-2" : undefined}>
@@ -67,6 +72,7 @@ export function LeadForm({ config }: LeadFormProps) {
                 name={field.name}
                 required={field.required}
                 placeholder={field.placeholder}
+                maxLength={field.maxLength}
                 rows={5}
                 className="min-h-36 w-full border border-[#cfd9e4] bg-white px-4 py-3 text-sm text-[#102033] outline-none transition placeholder:text-[#7b8894] focus:border-[#0077C8] focus:ring-4 focus:ring-[#0077C8]/15"
               />
@@ -76,6 +82,7 @@ export function LeadForm({ config }: LeadFormProps) {
                 required={field.required}
                 type={field.type}
                 placeholder={field.placeholder}
+                maxLength={field.maxLength}
                 className="min-h-12 w-full border border-[#cfd9e4] bg-white px-4 py-3 text-sm text-[#102033] outline-none transition placeholder:text-[#7b8894] focus:border-[#0077C8] focus:ring-4 focus:ring-[#0077C8]/15"
               />
             )}

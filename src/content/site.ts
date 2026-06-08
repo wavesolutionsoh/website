@@ -248,6 +248,7 @@ export const siteConfig = {
         type: "text",
         placeholder: "Your name",
         required: true,
+        maxLength: 120,
       },
       {
         name: "email",
@@ -255,18 +256,21 @@ export const siteConfig = {
         type: "email",
         placeholder: "you@example.com",
         required: true,
+        maxLength: 160,
       },
       {
         name: "phone",
         label: "Phone",
         type: "tel",
         placeholder: "(555) 555-5555",
+        maxLength: 80,
       },
       {
         name: "business",
         label: "Business",
         type: "text",
         placeholder: "Company name",
+        maxLength: 160,
       },
       {
         name: "message",
@@ -274,6 +278,7 @@ export const siteConfig = {
         type: "textarea",
         placeholder: "Tell us about missed calls, follow-up, scheduling, or customer communication needs.",
         required: true,
+        maxLength: 3000,
       },
     ],
   },
