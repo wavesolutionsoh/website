@@ -194,6 +194,11 @@ export const siteConfig = {
       title: "Answering Services",
       text:
         "Professional call answering and message handling that ensures every customer interaction is managed promptly and professionally.",
+      supportPoints: [
+        "Receiving inbound calls, messages, emails, and customer inquiries",
+        "Responding professionally on behalf of your business",
+        "Ensuring every customer interaction moves forward",
+      ],
     },
     {
       slug: "virtual-receptionist-services",
@@ -201,6 +206,11 @@ export const siteConfig = {
       title: "Virtual Receptionist Services",
       text:
         "Live receptionist support for customer inquiries, appointment coordination, call routing, and customer communication.",
+      supportPoints: [
+        "Live virtual receptionist support",
+        "Scheduling, confirming, and following up with customers",
+        "Operational support that acts as an extension of your team",
+      ],
     },
     {
       slug: "customer-follow-up",
@@ -208,6 +218,11 @@ export const siteConfig = {
       title: "Customer Follow-Up",
       text:
         "Email, SMS, and phone follow-up services that ensure no customer inquiry is left unresolved.",
+      supportPoints: [
+        "Follow-up and communication management",
+        "Multi-channel communication handling",
+        "Ensuring every customer interaction moves forward",
+      ],
     },
     {
       slug: "ai-powered-communication-support",
@@ -215,6 +230,11 @@ export const siteConfig = {
       title: "AI-Powered Communication Support",
       text:
         "Smart automation tools that enhance response time while maintaining a natural and professional customer experience.",
+      supportPoints: [
+        "Human-centered AI tools and automation",
+        "Optimize with the right blend of technology and human insight.",
+        "Consistency across channels",
+      ],
     },
     {
       slug: "communication-management",
@@ -222,6 +242,11 @@ export const siteConfig = {
       title: "Communication Management",
       text:
         "Integrated support across phone, email, SMS, and electronic communication systems.",
+      supportPoints: [
+        "Updating systems and managing ongoing communication",
+        "Multi-channel communication handling",
+        "Consistent brand voice across every interaction",
+      ],
     },
   ],
   cta: {
