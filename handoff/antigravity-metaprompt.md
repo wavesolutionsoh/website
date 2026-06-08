@@ -1,20 +1,21 @@
-# Antigravity Metaprompt: Wave Solutions Boiler
+# Antigravity Metaprompt: Wave Solutions Website
 
-You are working in `D:\_devtrue\WaveSolutionsBoiler`, a reusable Next.js App Router boiler for simple service-business websites.
+You are working in `D:\_devtrue\WaveSolutionsBoiler`, a Next.js App Router website for Wave Solutions LLC.
 
 ## Goal
 
-Build and extend a clean one-page splash site for Wave Solutions LLC. The first deliverable is a conference-ready landing page with Wave branding, a clear service-business layout, and a lead form. The project must remain adaptable so future clients can be created by swapping a JSON config and brand assets instead of rewriting the page.
+Build and extend a multi-page Wave Solutions LLC website with approved client copy, Wave branding, a clear service-business layout, service growth paths, and a lead form. Keep the project adaptable by editing structured content and shared components instead of hard-coding page copy.
 
 ## Source Of Truth
 
 Use these files as the operating container:
 
-- `src/content/site-config.json` for live page content, brand tokens, navigation, service cards, CTA copy, and form fields.
+- `src/content/site.ts` for live page content, brand tokens, navigation, service cards, CTA copy, and form fields.
+- `handoff/implementation-plan.md` for the approved expansion plan, page map, copy rules, and build safety gates.
 - `handoff/site-config.container.json` for implementation intent, design reference rules, and integration boundaries.
 - `public/images/wave-logo.png` for the active brand logo.
 
-Do not hard-code client-specific content in components unless it is a reusable fallback. Prefer reading from `src/content/site-config.json`.
+Do not hard-code client-specific content in components unless it is a reusable fallback. Prefer reading from `src/content/site.ts`.
 
 ## Visual Direction
 
@@ -41,11 +42,21 @@ Do not clone Seek Comfort’s content, logo, HVAC-specific framing, or exact lay
 
 ## Current Implementation
 
-The page is implemented in:
+The site is implemented in:
 
 - `src/app/page.tsx`
+- `src/app/about/page.tsx`
+- `src/app/why-wave/page.tsx`
+- `src/app/approach/page.tsx`
+- `src/app/industries/page.tsx`
+- `src/app/services/page.tsx`
+- `src/app/services/[slug]/page.tsx`
+- `src/app/contact/page.tsx`
+- `src/components/site-chrome.tsx`
+- `src/components/site-sections.tsx`
+- `src/components/wave-texture.tsx`
 - `src/components/lead-form.tsx`
-- `src/content/site-config.json`
+- `src/content/site.ts`
 - `src/app/globals.css`
 
 The form posts to `src/app/api/lead/route.ts`. It is wired for Resend when these env vars are configured:
@@ -63,7 +74,7 @@ When asked to extend or replace the form provider:
 1. Keep submission server-side through a route handler or server action.
 2. Initialize third-party SDKs lazily inside the request flow, never as required launch-time globals.
 3. Keep provider secrets in environment variables.
-4. Keep environment variables out of the JSON config.
+4. Keep environment variables out of the structured content file.
 5. Preserve the same front-end fields unless the new provider requires a small mapping layer.
 
 Possible providers: Resend, Formspree, HubSpot, Zoho CRM, Calendly, Cal.com, or a custom webhook.
@@ -87,5 +98,6 @@ Do not remove existing MX records if Gmail/GoDaddy is handling domain email.
 - Local preview renders without runtime errors.
 - Desktop and mobile screenshots are visually clean.
 - The first viewport shows Wave branding, a clear headline, CTA, and the beginning of the next section.
+- Navigation includes a services submenu that can grow through `src/content/site.ts`.
 - The form is usable and clearly marked as provider-neutral for later wiring.
-- The code stays reusable for future simple sites by editing `src/content/site-config.json`.
+- The code stays reusable for future expansion by editing `src/content/site.ts`.

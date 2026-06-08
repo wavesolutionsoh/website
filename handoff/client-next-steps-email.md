@@ -2,7 +2,7 @@ Subject: Wave Solutions website preview and next steps
 
 Hi Lilly,
 
-I put together a first one-page website preview for Wave Solutions so we have something clean and conference-ready to review. I included desktop, tablet, and mobile screenshots so you can see how the page responds across different screen sizes.
+I put together the initial Wave Solutions website preview and started expanding it into the approved multi-page structure. I included desktop, tablet, and mobile screenshots so you can see how the page responds across different screen sizes.
 
 The current version includes:
 

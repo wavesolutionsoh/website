@@ -1,6 +1,6 @@
-# Wave Solutions Boiler
+# Wave Solutions Website
 
-Reusable Next.js/Tailwind boiler for a simple service-business website. The initial build is a one-page Wave Solutions LLC splash page with branding, service cards, and a provider-neutral lead form.
+Next.js/Tailwind website for Wave Solutions LLC. The site includes a home page, About, Why Wave, Approach, Industries, Services, individual service pages, Contact, and a Resend-ready lead form.
 
 ## Run Locally
 
@@ -16,10 +16,10 @@ Open `http://localhost:3000`.
 Primary content and brand settings live in:
 
 ```text
-src/content/site-config.json
+src/content/site.ts
 ```
 
-The current page reads company details, navigation, hero copy, services, CTA copy, footer copy, and form fields from that JSON file.
+The current site reads company details, navigation, approved page copy, services, CTA copy, footer copy, and form fields from that TypeScript content file.
 
 ## Handoff
 
@@ -28,6 +28,7 @@ Antigravity-ready handoff files:
 ```text
 handoff/antigravity-metaprompt.md
 handoff/site-config.container.json
+handoff/implementation-plan.md
 ```
 
 ## Form Integration

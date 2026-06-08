@@ -4,12 +4,10 @@
     "framework": "Next.js App Router",
     "language": "TypeScript",
     "styling": "Tailwind CSS",
-    "contentSource": "src/content/site-config.json",
-    "initialDeliverable": "One-page splash page with branding and a lead form",
+    "contentSource": "src/content/site.ts",
+    "initialDeliverable": "Multi-page website with branding, service pages, and a lead form",
     "futureDeliverables": [
-      "About page",
-      "Services page",
-      "Contact page",
+      "Expanded service-specific pages as approved copy grows",
       "Booking system integration",
       "Email provider or CRM adapter"
     ]

@@ -4,13 +4,13 @@ import { useState } from "react";
 import { Send } from "lucide-react";
 
 type FormConfig = {
-  fields: Array<{
+  fields: readonly {
     name: string;
     label: string;
     type: string;
     placeholder: string;
     required?: boolean;
-  }>;
+  }[];
   submitLabel: string;
   providerMode: string;
 };
