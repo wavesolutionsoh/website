@@ -1,21 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Bot, CalendarCheck, CheckCircle2, Headphones, MessagesSquare, PhoneCall } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { siteConfig } from "@/content/site";
 import { LeadForm } from "@/components/lead-form";
 import { SoftTexture, WaveTexture } from "@/components/wave-texture";
 import type { ReactNode } from "react";
-
-const iconMap = {
-  Bot,
-  CalendarCheck,
-  Headphones,
-  MessagesSquare,
-  PhoneCall,
-};
+import { WaveServiceIcon } from "@/components/wave-service-icon";
 
 type Service = (typeof siteConfig.services)[number];
-type IconKey = keyof typeof iconMap;
 
 export function HomeHero() {
   return (
@@ -127,11 +119,10 @@ export function ServiceGrid({ services = siteConfig.services, linked = true }: {
   return (
     <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
       {services.map((service) => {
-        const Icon = iconMap[service.icon as IconKey] ?? Headphones;
         const card = (
           <article className="h-full border-b-4 border-[#F58220] bg-white p-7 shadow-[0_18px_45px_rgba(6,42,96,0.12)]">
             <div className="mb-7 grid h-16 w-16 place-items-center rounded-full bg-[#F58220] text-white">
-              <Icon className="h-8 w-8" />
+              <WaveServiceIcon slug={service.slug} className="h-8 w-8" />
             </div>
             <h2 className="text-xl font-extrabold leading-tight text-[#062A60]">{service.title}</h2>
             <p className="mt-4 text-sm leading-7 text-[#5c6875]">{service.text}</p>
