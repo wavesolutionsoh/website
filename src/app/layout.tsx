@@ -12,11 +12,11 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://wave-solutions.co"),
-  title: "Wave Solutions LLC | Professional Answering & Virtual Receptionist Services",
+  title: "WAVE Solutions LLC | Professional Answering & Virtual Receptionist Services",
   description:
     "Professional answering, virtual receptionist, and communication support services for responsive service-based businesses.",
   openGraph: {
-    title: "Wave Solutions LLC",
+    title: "WAVE Solutions LLC",
     description: "Professional answering and virtual receptionist services for service-based businesses.",
     type: "website",
     locale: "en_US",

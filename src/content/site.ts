@@ -1,6 +1,6 @@
 export const siteConfig = {
   company: {
-    name: "Wave Solutions LLC",
+    name: "WAVE Solutions LLC",
     email: "info@wave-solutions.co",
     phone: "(888) 279-9283",
     phoneHref: "+18882799283",
@@ -8,9 +8,15 @@ export const siteConfig = {
   },
   navigation: [
     { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Why Wave", href: "/why-wave" },
-    { label: "Approach", href: "/approach" },
+    {
+      label: "About",
+      href: "/about",
+      children: [
+        { label: "Overview", href: "/about" },
+        { label: "Why WAVE", href: "/why-wave" },
+        { label: "Approach", href: "/approach" },
+      ],
+    },
     { label: "Industries", href: "/industries" },
     {
       label: "Services",
@@ -39,11 +45,11 @@ export const siteConfig = {
     eyebrow: "Written. AI. Voice. Electronic.",
     heading: "Professional Answering and Virtual Receptionist Support",
     subheading:
-      "Wave Solutions LLC provides professional answering service and virtual receptionist solutions for service-based businesses that need reliable, responsive, and customer-focused communication support.",
+      "WAVE Solutions LLC provides professional answering service and virtual receptionist solutions for service-based businesses that need reliable, responsive, and customer-focused communication support.",
     supporting:
       "We help businesses ensure every call, message, email, and customer inquiry receives prompt follow-through so no opportunity is missed.",
     primaryCta: "Start the Conversation",
-    secondaryCta: "Call Wave",
+    secondaryCta: "Call WAVE",
     waveDefinition: "WAVE represents Written, Automation & AI, Voice, and Electronic communication support.",
   },
   waveAreas: ["Written", "Automation & AI", "Voice", "Electronic"],
@@ -51,14 +57,14 @@ export const siteConfig = {
     eyebrow: "Our Promise",
     heading: "We do not just answer the call.",
     text:
-      "We help businesses complete the communication loop. Wave Solutions ensures every customer inquiry receives timely follow-through, helping businesses improve responsiveness, customer satisfaction, and operational efficiency.",
+      "We help businesses complete the communication loop. WAVE Solutions ensures every customer inquiry receives timely follow-through, helping businesses improve responsiveness, customer satisfaction, and operational efficiency.",
   },
   about: {
-    eyebrow: "About Wave Solutions LLC",
+    eyebrow: "About WAVE Solutions LLC",
     heading: "A modern communication extension for service-based businesses.",
     body: [
-      "Wave Solutions LLC is a modern answering service and virtual receptionist company designed to support businesses that rely heavily on customer communication.",
-      "While traditional answering services focus primarily on taking messages, Wave Solutions goes further by helping businesses complete the communication loop. We provide customer follow-up, appointment coordination, communication management, and multi-channel support across phone, email, SMS, and digital communication systems.",
+      "WAVE Solutions LLC is a modern answering service and virtual receptionist company designed to support businesses that rely heavily on customer communication.",
+      "While traditional answering services focus primarily on taking messages, WAVE Solutions goes further by helping businesses complete the communication loop. We provide customer follow-up, appointment coordination, communication management, and multi-channel support across phone, email, SMS, and digital communication systems.",
       "Our goal is simple: ensure every customer interaction is handled professionally, efficiently, and consistently.",
     ],
   },
@@ -68,7 +74,7 @@ export const siteConfig = {
     body: [
       "Many businesses miss opportunities not because the phone was not answered, but because communication stopped after the initial message.",
       "Customers expect quick responses, timely follow-up, and consistent communication. However, many service businesses struggle with missed callbacks, delayed responses, overwhelmed office staff, unanswered emails and texts, disconnected communication systems, lost leads, and frustrated customers.",
-      "Wave Solutions exists to bridge that gap by providing responsive answering and communication support that helps businesses stay connected to their customers.",
+      "WAVE Solutions exists to bridge that gap by providing responsive answering and communication support that helps businesses stay connected to their customers.",
     ],
     challenges: [
       "Missed callbacks",
@@ -83,7 +89,7 @@ export const siteConfig = {
     eyebrow: "What Makes Us Different",
     heading: "Communication completion, not just message capture.",
     body: [
-      "Wave Solutions is more than a traditional answering service.",
+      "WAVE Solutions is more than a traditional answering service.",
       "We focus on communication completion, not just message capture.",
     ],
     items: [
@@ -158,7 +164,7 @@ export const siteConfig = {
     eyebrow: "Who We Serve",
     heading: "Built for businesses that depend on strong customer communication.",
     body:
-      "Wave Solutions partners with businesses that depend on strong customer communication, including businesses that rely on timely communication to retain customers and grow revenue.",
+      "WAVE Solutions partners with businesses that depend on strong customer communication, including businesses that rely on timely communication to retain customers and grow revenue.",
     items: [
       "Home service companies (HVAC, plumbing, electrical, roofing)",
       "Medical and dental practices",
@@ -172,12 +178,12 @@ export const siteConfig = {
     eyebrow: "Founder Story",
     heading: "Built from firsthand answering service experience.",
     body: [
-      "Wave Solutions LLC was founded by Lilly Hedrich from firsthand experience in the answering service industry and a background in Supply Chain and Operations Management.",
+      "WAVE Solutions LLC was founded by Lilly Hedrich from firsthand experience in the answering service industry and a background in Supply Chain and Operations Management.",
       "During eight years working in answering services, Lilly observed a common issue: businesses answered calls and captured messages, but often lacked the time, systems, or staffing needed to properly follow up afterward.",
       "While businesses did not miss the call, they often missed the opportunity.",
       "Lilly recognized that true communication requires more than message capture. It requires follow-through, responsiveness, and completion.",
-      "Wave Solutions was created to provide businesses with professional answering and virtual receptionist support that keeps communication moving forward.",
-      "At its core, Wave Solutions is built on the belief that strong communication builds stronger relationships.",
+      "WAVE Solutions was created to provide businesses with professional answering and virtual receptionist support that keeps communication moving forward.",
+      "At its core, WAVE Solutions is built on the belief that strong communication builds stronger relationships.",
       "We help businesses stay connected, responsive, and heard.",
     ],
   },
@@ -185,7 +191,7 @@ export const siteConfig = {
     eyebrow: "Our Services",
     heading: "Communication support across phone, email, SMS, and digital systems.",
     text:
-      "Wave Solutions provides answering service, virtual receptionist, customer follow-up, AI-powered communication support, and communication management services for businesses that need reliable customer follow-through.",
+      "WAVE Solutions provides answering service, virtual receptionist, customer follow-up, AI-powered communication support, and communication management services for businesses that need reliable customer follow-through.",
   },
   services: [
     {
@@ -257,8 +263,8 @@ export const siteConfig = {
   },
   form: {
     eyebrow: "Start here",
-    heading: "Tell Wave what kind of communication support your team needs.",
-    text: "Share a few details and Wave can follow up with the next step.",
+    heading: "Tell WAVE what kind of communication support your team needs.",
+    text: "Share a few details and WAVE can follow up with the next step.",
     submitLabel: "Submit",
     providerMode: "Secure form delivery is connected.",
     notes: [
@@ -311,7 +317,7 @@ export const siteConfig = {
     summary:
       "Professional answering service and virtual receptionist solutions for businesses that need responsive, customer-focused communication support.",
     serviceNote:
-      "Wave helps service-based teams stay responsive with professional call answering, message handling, appointment coordination, and practical communication support.",
+      "WAVE helps service-based teams stay responsive with professional call answering, message handling, appointment coordination, and practical communication support.",
   },
 } as const;
 

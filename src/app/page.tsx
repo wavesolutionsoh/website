@@ -1,5 +1,5 @@
 import { SiteFrame } from "@/components/site-chrome";
-import { HomeHero, ItemGrid, LeadFormSection, PromiseBand, SectionBand, ServiceGrid } from "@/components/site-sections";
+import { ChallengeBoard, DifferenceSection, HomeHero, LeadFormSection, PromiseBand, SectionBand, ServiceGrid } from "@/components/site-sections";
 import { siteConfig } from "@/content/site";
 
 export default function Home() {
@@ -12,12 +12,16 @@ export default function Home() {
         </div>
       </section>
       <SectionBand eyebrow={siteConfig.why.eyebrow} title={siteConfig.why.heading} body={siteConfig.why.body.slice(0, 1)} variant="soft">
-        <ItemGrid items={siteConfig.why.challenges.slice(0, 6)} />
-      </SectionBand>
-      <SectionBand eyebrow={siteConfig.difference.eyebrow} title={siteConfig.difference.heading} body={siteConfig.difference.body}>
-        <ItemGrid items={siteConfig.difference.items} />
+        <ChallengeBoard title="These breakdowns are what WAVE is built to resolve." body={siteConfig.why.body.slice(1)} items={siteConfig.why.challenges.slice(0, 6)} />
       </SectionBand>
       <PromiseBand />
+      <DifferenceSection
+        eyebrow={siteConfig.difference.eyebrow}
+        title={siteConfig.difference.heading}
+        body={siteConfig.difference.body}
+        items={siteConfig.difference.items}
+        variant="soft"
+      />
       <LeadFormSection />
     </SiteFrame>
   );

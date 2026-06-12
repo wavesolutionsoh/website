@@ -28,7 +28,8 @@ export function LeadForm({ config }: LeadFormProps) {
 
   return (
     <form
-      className="bg-[#f5f7fb] p-6 shadow-[0_24px_70px_rgba(16,32,51,0.13)] md:p-9"
+      data-motion-reveal
+      className="motion-card bg-[#f5f7fb] p-6 shadow-[0_24px_70px_rgba(16,32,51,0.13)] md:p-9"
       onSubmit={async (event) => {
         event.preventDefault();
         setSubmitState("submitting");
@@ -51,7 +52,7 @@ export function LeadForm({ config }: LeadFormProps) {
           }
 
           setSubmitState("submitted");
-          setMessage(result.message ?? "Thanks. Wave will follow up soon.");
+          setMessage(result.message ?? "Thanks. WAVE will follow up soon.");
           form.reset();
         } catch (error) {
           setSubmitState("error");
@@ -74,7 +75,7 @@ export function LeadForm({ config }: LeadFormProps) {
                 placeholder={field.placeholder}
                 maxLength={field.maxLength}
                 rows={5}
-                className="min-h-36 w-full border border-[#cfd9e4] bg-white px-4 py-3 text-sm text-[#102033] outline-none transition placeholder:text-[#7b8894] focus:border-[#0077C8] focus:ring-4 focus:ring-[#0077C8]/15"
+                className="form-input min-h-36 w-full border border-[#cfd9e4] bg-white px-4 py-3 text-sm text-[#102033] placeholder:text-[#7b8894]"
               />
             ) : (
               <input
@@ -83,7 +84,7 @@ export function LeadForm({ config }: LeadFormProps) {
                 type={field.type}
                 placeholder={field.placeholder}
                 maxLength={field.maxLength}
-                className="min-h-12 w-full border border-[#cfd9e4] bg-white px-4 py-3 text-sm text-[#102033] outline-none transition placeholder:text-[#7b8894] focus:border-[#0077C8] focus:ring-4 focus:ring-[#0077C8]/15"
+                className="form-input min-h-12 w-full border border-[#cfd9e4] bg-white px-4 py-3 text-sm text-[#102033] placeholder:text-[#7b8894]"
               />
             )}
           </label>
@@ -94,7 +95,7 @@ export function LeadForm({ config }: LeadFormProps) {
         <button
           type="submit"
           disabled={submitState === "submitting"}
-          className="inline-flex min-h-14 items-center justify-center gap-2 bg-[#F58220] px-7 font-extrabold text-white transition hover:bg-[#cf690d]"
+          className="btn-primary inline-flex min-h-14 items-center justify-center gap-2 bg-[#F58220] px-7 font-extrabold text-white hover:bg-[#cf690d]"
         >
           {submitState === "submitting" ? "Sending..." : config.submitLabel}
           <Send className="h-4 w-4" />

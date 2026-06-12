@@ -3,13 +3,17 @@ import Link from "next/link";
 import { ChevronDown, Menu } from "lucide-react";
 import { siteConfig } from "@/content/site";
 import type { ReactNode } from "react";
+import { MotionController } from "@/components/motion-controller";
+import { FloatingCallCta } from "@/components/floating-call-cta";
 
 export function SiteFrame({ children }: { children: ReactNode }) {
   return (
-    <main className="min-h-screen bg-[#f5f7fb] text-[#102033]">
+    <main data-motion-root className="min-h-screen bg-[#f5f7fb] text-[#102033]">
+      <MotionController />
       <TopBar />
       <SiteHeader />
       {children}
+      <FloatingCallCta />
       <SiteFooter />
     </main>
   );
@@ -18,9 +22,9 @@ export function SiteFrame({ children }: { children: ReactNode }) {
 function TopBar() {
   return (
     <div className="bg-[#062A60] text-white">
-      <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-3 text-xs font-semibold sm:flex-row sm:items-center sm:justify-between lg:px-8">
-        <span>{siteConfig.company.location}</span>
-        <div className="flex flex-wrap gap-x-5 gap-y-1">
+      <div data-motion-group className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-3 text-xs font-semibold sm:flex-row sm:items-center sm:justify-between lg:px-8">
+        <span data-motion-reveal>{siteConfig.company.location}</span>
+        <div data-motion-reveal className="flex flex-wrap gap-x-5 gap-y-1">
           <a href={`mailto:${siteConfig.company.email}`} className="hover:text-[#F58220]">
             {siteConfig.company.email}
           </a>
@@ -36,21 +40,21 @@ function TopBar() {
 function SiteHeader() {
   return (
     <header className="border-b border-[#d9e1ea] bg-white">
-      <div className="mx-auto flex min-h-28 max-w-7xl items-center justify-between gap-5 px-5 py-4 lg:px-8">
-        <Link href="/" className="relative block h-20 w-44 shrink-0" aria-label={`${siteConfig.company.name} home`}>
+      <div data-motion-group className="mx-auto flex min-h-28 max-w-7xl items-center justify-between gap-5 px-5 py-4 lg:px-8">
+        <Link data-motion-reveal href="/" className="relative block h-20 w-44 shrink-0" aria-label={`${siteConfig.company.name} home`}>
           <Image src="/images/wave-logo.png" alt={siteConfig.company.name} fill priority sizes="176px" className="object-contain object-left" />
         </Link>
-        <nav className="hidden items-center gap-5 text-xs font-bold uppercase tracking-[0.08em] text-[#243a53] lg:flex xl:gap-7 xl:text-sm">
+        <nav data-motion-reveal className="hidden items-center gap-5 text-xs font-bold uppercase tracking-[0.08em] text-[#243a53] lg:flex xl:gap-7 xl:text-sm">
           {siteConfig.navigation.map((item) => (
             <div key={item.href} className="group relative py-4">
-              <Link href={item.href} className="inline-flex items-center gap-1 hover:text-[#0077C8]">
+              <Link href={item.href} className="nav-link inline-flex items-center gap-1 hover:text-[#0077C8]">
                 {item.label}
                 {"children" in item ? <ChevronDown className="h-3.5 w-3.5" /> : null}
               </Link>
               {"children" in item ? (
                 <div className="invisible absolute left-0 top-full z-30 w-72 border border-[#d9e1ea] bg-white p-3 opacity-0 shadow-[0_18px_45px_rgba(6,42,96,0.16)] transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                   {item.children.map((child) => (
-                    <Link key={child.href} href={child.href} className="block px-4 py-3 text-xs leading-5 text-[#33475b] hover:bg-[#f5f7fb] hover:text-[#0077C8]">
+                    <Link key={child.href} href={child.href} className="nav-link block px-4 py-3 text-xs leading-5 text-[#33475b] hover:bg-[#f5f7fb] hover:text-[#0077C8]">
                       {child.label}
                     </Link>
                   ))}
@@ -60,8 +64,9 @@ function SiteHeader() {
           ))}
         </nav>
         <Link
+          data-motion-reveal
           href="/contact"
-          className="inline-flex min-h-12 items-center justify-center bg-[#F58220] px-5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(245,130,32,0.26)] transition hover:bg-[#cf690d]"
+          className="btn-primary inline-flex min-h-12 items-center justify-center bg-[#F58220] px-5 text-sm font-bold text-white shadow-[0_8px_20px_rgba(245,130,32,0.26)] hover:bg-[#cf690d]"
         >
           Start Here
         </Link>
@@ -100,14 +105,14 @@ function SiteHeader() {
 function SiteFooter() {
   return (
     <footer className="border-t border-[#d9e1ea] bg-white px-5 py-14 text-[#102033] lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.1fr_0.9fr_0.9fr]">
-        <div>
+      <div data-motion-group className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.1fr_0.9fr_0.9fr]">
+        <div data-motion-reveal>
           <div className="relative h-16 w-40 bg-white p-2">
             <Image src="/images/wave-logo.png" alt={siteConfig.company.name} fill sizes="160px" className="object-contain p-2" />
           </div>
           <p className="mt-6 max-w-md text-sm font-medium leading-7 text-[#4e5f70]">{siteConfig.footer.summary}</p>
         </div>
-        <div>
+        <div data-motion-reveal>
           <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-[#0077C8]">Contact</h2>
           <div className="mt-5 space-y-3 text-sm font-semibold text-[#33475b]">
             <p>{siteConfig.company.location}</p>
@@ -119,7 +124,7 @@ function SiteFooter() {
             </a>
           </div>
         </div>
-        <div>
+        <div data-motion-reveal>
           <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-[#0077C8]">Service Focus</h2>
           <p className="mt-5 text-sm font-medium leading-7 text-[#4e5f70]">{siteConfig.footer.serviceNote}</p>
         </div>

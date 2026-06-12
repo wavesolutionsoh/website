@@ -8,11 +8,11 @@ export default function NotFound() {
     <SiteFrame>
       <PageHero
         eyebrow="Page not found"
-        title="This Wave Solutions page is not available."
+        title="This WAVE Solutions page is not available."
         text="Use the links below to get back to the main website sections."
         highlights={siteConfig.waveAreas}
       />
-      <SectionBand title="Continue exploring Wave Solutions" variant="soft">
+      <SectionBand title="Continue exploring WAVE Solutions" variant="soft">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { label: "Home", href: "/" },
@@ -23,7 +23,7 @@ export default function NotFound() {
             <Link
               key={link.href}
               href={link.href}
-              className="bg-white p-5 text-sm font-extrabold uppercase tracking-[0.08em] text-[#062A60] shadow-[0_14px_34px_rgba(6,42,96,0.10)] transition hover:text-[#0077C8]"
+              className="relative overflow-hidden rounded-[18px] rounded-br-[24px] border border-[#dbe6f0] bg-[linear-gradient(160deg,#ffffff,#edf5fb)] p-5 text-sm font-extrabold uppercase tracking-[0.08em] text-[#062A60] shadow-[0_16px_38px_rgba(6,42,96,0.10)] transition hover:-translate-y-0.5 hover:text-[#0077C8]"
             >
               {link.label}
             </Link>

@@ -7,6 +7,13 @@
 :root {
   --background: #ffffff;
   --foreground: #102033;
+  --color-secondary: #0077c8;
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-premium-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 200ms;
+  --duration-smooth: 450ms;
+  --duration-entrance: 700ms;
 }
 
 * {
@@ -38,4 +45,160 @@ select {
 ::selection {
   background: #f58220;
   color: #ffffff;
+}
+
+.motion-ready .reveal-element {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  will-change: transform, opacity;
+  transition:
+    opacity var(--duration-entrance) var(--ease-premium),
+    transform var(--duration-entrance) var(--ease-premium);
+}
+
+.motion-ready .reveal-element.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: calc(var(--stagger-index, 0) * 60ms);
+}
+
+.card-service,
+.motion-card,
+.btn-primary,
+.btn-secondary,
+.form-input,
+.nav-link {
+  backface-visibility: hidden;
+}
+
+.card-service,
+.motion-card {
+  will-change: transform, box-shadow, border-color;
+  transition:
+    translate var(--duration-smooth) var(--ease-premium),
+    scale var(--duration-smooth) var(--ease-premium),
+    box-shadow var(--duration-smooth) var(--ease-premium),
+    border-color var(--duration-fast) var(--ease-soft);
+}
+
+.card-service:hover,
+.motion-card:hover {
+  translate: 0 -4px;
+  scale: 1.005;
+}
+
+.btn-primary,
+.btn-secondary,
+.nav-link {
+  will-change: transform;
+  transition:
+    translate var(--duration-fast) var(--ease-premium),
+    scale var(--duration-fast) var(--ease-premium),
+    background-color var(--duration-fast) var(--ease-soft),
+    color var(--duration-fast) var(--ease-soft),
+    box-shadow var(--duration-fast) var(--ease-soft);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  translate: 0 -2px;
+  scale: 1.015;
+}
+
+.btn-primary:active,
+.btn-secondary:active {
+  translate: 0 0;
+  scale: 0.98;
+}
+
+.nav-link:hover {
+  translate: 0 -1px;
+}
+
+.form-input {
+  will-change: box-shadow, border-color;
+  transition:
+    border-color var(--duration-fast) var(--ease-soft),
+    box-shadow var(--duration-fast) var(--ease-soft);
+}
+
+.form-input:focus {
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 4px rgba(0, 119, 200, 0.12);
+  outline: none;
+}
+
+.marble {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 22px 22px 42px 22px;
+  background: linear-gradient(145deg, #062a60 0%, #07599d 48%, #0077c8 100%);
+  color: #ffffff;
+  box-shadow: 0 22px 50px rgba(6, 42, 96, 0.18);
+}
+
+.marble::before {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.22), transparent 18%),
+    linear-gradient(125deg, transparent 0 42%, rgba(255, 255, 255, 0.12) 42.2%, transparent 42.7% 72%, rgba(255, 255, 255, 0.06) 72.2%, transparent 72.8%),
+    linear-gradient(35deg, transparent 0 54%, rgba(245, 130, 32, 0.08) 54.2%, transparent 54.7%);
+  content: "";
+  pointer-events: none;
+}
+
+.marble::after {
+  position: absolute;
+  inset: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 21px 21px 41px 21px;
+  content: "";
+  pointer-events: none;
+}
+
+.marble-content {
+  position: relative;
+  z-index: 1;
+}
+
+.marble-icon {
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 18px 18px 22px 18px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 24px rgba(6, 42, 96, 0.18);
+  transition: scale var(--duration-smooth) var(--ease-premium);
+}
+
+.marble:hover .marble-icon {
+  scale: 1.03;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .motion-ready .reveal-element,
+  .motion-ready .reveal-element.is-visible,
+  .card-service,
+  .motion-card,
+  .btn-primary,
+  .btn-secondary,
+  .nav-link {
+    opacity: 1 !important;
+    scale: none !important;
+    translate: none !important;
+    transform: none !important;
+  }
 }

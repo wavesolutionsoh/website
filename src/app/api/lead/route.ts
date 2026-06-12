@@ -55,7 +55,7 @@ export async function POST(request: Request) {
   const website = asText(payload.website);
 
   if (website) {
-    return NextResponse.json({ message: "Thanks. Wave will follow up soon.", mode: "filtered" });
+    return NextResponse.json({ message: "Thanks. WAVE will follow up soon.", mode: "filtered" });
   }
 
   if (!name || !email || !message) {
@@ -96,9 +96,9 @@ export async function POST(request: Request) {
       from: leadFromEmail,
       to: leadToEmail,
       replyTo: email,
-      subject: `New Wave Solutions lead from ${name}`,
+      subject: `New WAVE Solutions lead from ${name}`,
       html: `
-        <h1>New Wave Solutions website lead</h1>
+        <h1>New WAVE Solutions website lead</h1>
         <p><strong>Name:</strong> ${escapeHtml(name)}</p>
         <p><strong>Email:</strong> ${escapeHtml(email)}</p>
         <p><strong>Phone:</strong> ${escapeHtml(phone || "Not provided")}</p>
@@ -115,5 +115,5 @@ export async function POST(request: Request) {
     );
   }
 
-  return NextResponse.json({ message: "Thanks. Wave will follow up soon.", mode: "sent" });
+  return NextResponse.json({ message: "Thanks. WAVE will follow up soon.", mode: "sent" });
 }
