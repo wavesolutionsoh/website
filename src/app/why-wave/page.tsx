@@ -1,17 +1,34 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { JsonLd } from "@/components/json-ld";
 import { SiteFrame } from "@/components/site-chrome";
 import { ChallengeBoard, DifferenceSection, PageHero, PromiseBand, SectionBand } from "@/components/site-sections";
 import { siteConfig } from "@/content/site";
+import { buildBreadcrumbSchema, buildMetadata, buildWebPageSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Why WAVE Solutions",
+export const metadata: Metadata = buildMetadata({
+  title: "Why WAVE",
   description: "Why WAVE Solutions exists and how it helps businesses complete the communication loop.",
-};
+  path: "/why-wave",
+  image: "/images/why-wave-marble-board.png",
+});
 
 export default function WhyWavePage() {
   return (
     <SiteFrame>
+      <JsonLd
+        data={[
+          buildWebPageSchema({
+            name: "Why WAVE Solutions",
+            description: "Why WAVE Solutions exists and how it helps businesses complete the communication loop.",
+            path: "/why-wave",
+          }),
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Why WAVE", path: "/why-wave" },
+          ]),
+        ]}
+      />
       <PageHero
         eyebrow={siteConfig.why.eyebrow}
         title={siteConfig.why.heading}
@@ -38,6 +55,7 @@ export default function WhyWavePage() {
         title={siteConfig.difference.heading}
         body={siteConfig.difference.body}
         items={siteConfig.difference.items}
+        showStandardCard={false}
       />
       <PromiseBand />
     </SiteFrame>

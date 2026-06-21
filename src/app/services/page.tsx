@@ -1,25 +1,45 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/json-ld";
 import { SiteFrame } from "@/components/site-chrome";
 import { ItemGrid, MediaFeature, PageHero, ProcessSteps, PromiseBand, SectionBand, ServiceGrid } from "@/components/site-sections";
 import { siteConfig } from "@/content/site";
+import { buildBreadcrumbSchema, buildCollectionPageSchema, buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "WAVE Solutions Services",
+export const metadata: Metadata = buildMetadata({
+  title: "Services",
   description: "Answering services, virtual receptionist services, customer follow-up, AI support, and communication management.",
-};
+  path: "/services",
+  image: "/images/generated/services-phone-notifications.png",
+});
 
 export default function ServicesPage() {
   return (
     <SiteFrame>
+      <JsonLd
+        data={[
+          buildCollectionPageSchema({
+            name: "WAVE Solutions Services",
+            description: "Answering services, virtual receptionist services, customer follow-up, AI support, and communication management.",
+            path: "/services",
+            items: siteConfig.services.map((service) => ({
+              name: service.title,
+              path: `/services/${service.slug}`,
+            })),
+          }),
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+          ]),
+        ]}
+      />
       <PageHero eyebrow={siteConfig.servicesIntro.eyebrow} title={siteConfig.servicesIntro.heading} text={siteConfig.servicesIntro.text} />
       <SectionBand title="Service areas" variant="soft">
         <MediaFeature
           title="Each service is part of one communication layer, not a separate disconnected task."
           body={[siteConfig.servicesIntro.text]}
-          placeholder={{
-            eyebrow: "Services image",
-            title: "Communication support service set",
-            text: "Placeholder for the services overview image covering calls, coordination, follow-up, AI support, and communication management.",
+          image={{
+            src: "/images/generated/services-phone-notifications.png",
+            alt: "Modern smartphone showing call, email, message, voicemail, and appointment notifications surrounded by connected tech interface elements",
           }}
         />
         <div className="mt-10">

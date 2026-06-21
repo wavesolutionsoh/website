@@ -1,17 +1,34 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { JsonLd } from "@/components/json-ld";
 import { SiteFrame } from "@/components/site-chrome";
 import { PageHero, ProcessSteps, PromiseBand, SectionBand, ValueGrid } from "@/components/site-sections";
 import { siteConfig } from "@/content/site";
+import { buildBreadcrumbSchema, buildMetadata, buildWebPageSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "WAVE Solutions Approach",
+export const metadata: Metadata = buildMetadata({
+  title: "Approach",
   description: "How WAVE Solutions works as a communication extension of your business.",
-};
+  path: "/approach",
+  image: "/images/approach-whiteboard-marble.png",
+});
 
 export default function ApproachPage() {
   return (
     <SiteFrame>
+      <JsonLd
+        data={[
+          buildWebPageSchema({
+            name: "WAVE Solutions Approach",
+            description: "How WAVE Solutions works as a communication extension of your business.",
+            path: "/approach",
+          }),
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Approach", path: "/approach" },
+          ]),
+        ]}
+      />
       <PageHero
         eyebrow={siteConfig.approach.eyebrow}
         title={siteConfig.approach.heading}

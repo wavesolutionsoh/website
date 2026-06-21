@@ -1,6 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CalendarDays, CheckCircle2, PhoneCall } from "lucide-react";
+import {
+  ArrowRight,
+  Bot,
+  BriefcaseBusiness,
+  Building2,
+  CalendarDays,
+  HardHat,
+  Headset,
+  House,
+  Mail,
+  MessageCircleReply,
+  MessageSquareText,
+  PhoneCall,
+  Scale,
+  Stethoscope,
+  Workflow,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { siteConfig } from "@/content/site";
 import { LeadForm } from "@/components/lead-form";
 import { SoftTexture, WaveTexture } from "@/components/wave-texture";
@@ -51,30 +68,38 @@ export function PageHero({
   text,
   highlights = siteConfig.waveAreas,
   aside,
+  alignTop = false,
+  actions,
 }: {
   eyebrow: string;
   title: string;
   text: string;
   highlights?: readonly string[];
   aside?: ReactNode;
+  alignTop?: boolean;
+  actions?: ReactNode;
 }) {
   return (
     <section className="relative isolate overflow-hidden bg-[#062A60] text-white">
       <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(6,42,96,0.97),rgba(0,119,200,0.76))]" />
       <WaveTexture />
-      <div data-motion-group className="relative mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[1fr_0.72fr] lg:items-end lg:px-8">
+      <div
+        data-motion-group
+        className={`relative mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[1fr_0.72fr] ${alignTop ? "lg:items-start" : "lg:items-end"} lg:px-8`}
+      >
         <div data-motion-reveal>
           <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#F58220]">{eyebrow}</p>
           <h1 className="mt-5 max-w-4xl text-balance text-4xl font-extrabold leading-tight md:text-6xl">{title}</h1>
           <p className="mt-6 max-w-3xl text-lg font-medium leading-8 text-white/86">{text}</p>
+          {actions}
         </div>
         {aside ?? (
           <div data-motion-reveal className="motion-card relative overflow-hidden rounded-[18px] rounded-br-[58px] rounded-tl-[58px] border border-white/18 bg-white/10 p-5 shadow-[0_22px_65px_rgba(0,0,0,0.18)]">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#F58220]">WAVE</p>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-              {highlights.map((item) => (
-                <div key={item} className="flex items-center gap-3 bg-white/10 px-4 py-3 text-sm font-bold text-white">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-[#F58220]" />
+              {highlights.map((item, index) => (
+                <div key={item} className="flex items-center gap-4 bg-white/10 px-4 py-3.5 text-sm font-bold text-white">
+                  <WaveListIcon item={item} index={index} variant="dark" />
                   {item}
                 </div>
               ))}
@@ -167,32 +192,228 @@ export function ServiceGrid({ services = siteConfig.services, linked = true }: {
   );
 }
 
-export function ItemGrid({ items }: { items: readonly string[] }) {
+export function ItemGrid({
+  items,
+  columns = "grid",
+  variant = "light",
+}: {
+  items: readonly string[];
+  columns?: "grid" | "stack" | "two-column";
+  variant?: "light" | "dark" | "marble";
+}) {
+  const isDark = variant === "dark";
+  const isMarble = variant === "marble";
+  const isStack = columns === "stack";
+  const isTwoColumn = columns === "two-column";
+
   return (
-    <div data-motion-group className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {items.map((item, index) => (
-        <article
-          data-motion-reveal
-          key={item}
-          className={`motion-card group relative overflow-hidden rounded-[18px] rounded-br-[26px] border border-[#dbe6f0] bg-[linear-gradient(165deg,#ffffff,#edf5fb)] p-5 shadow-[0_16px_38px_rgba(6,42,96,0.10)] hover:shadow-[0_22px_46px_rgba(6,42,96,0.14)] ${
-            index % 3 === 1 ? "lg:-translate-y-1" : ""
-          }`}
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_0%,rgba(0,119,200,0.12),transparent_28%)]" />
-          <div className="absolute bottom-0 left-5 right-5 h-[3px] bg-[linear-gradient(90deg,#F58220,rgba(245,130,32,0.06))]" />
-          <div className="relative flex min-h-24 items-start gap-4">
-            <span
-              aria-hidden="true"
-              className="mt-1 grid h-8 w-8 shrink-0 place-items-center rounded-full border border-[#F58220]/30 bg-[#fff5eb] text-[#F58220]"
+    <div data-motion-group className={`grid gap-5 ${getItemGridColumnsClass(columns, isMarble)}`}>
+      {items.map((item, index) => {
+        const spanClass = getItemGridSpanClass(columns, items.length, index, isMarble);
+
+        if (isMarble) {
+          return (
+            <Marble
+              key={item}
+              className={`p-6 ${spanClass}`}
+              contentClassName="flex min-h-[11.5rem] flex-col justify-between"
             >
-              <CheckCircle2 className="h-4 w-4" />
-            </span>
-            <p className="text-sm font-bold leading-7 text-[#33475b]">{item}</p>
-          </div>
-        </article>
-      ))}
+              <MarbleIcon>
+                {renderWaveItemGlyph(item, index, "h-10 w-10 text-white")}
+              </MarbleIcon>
+              <div className="mt-6">
+                <div className="mb-4 h-px w-14 bg-white/35" />
+                <p className="text-lg font-extrabold leading-7 text-white">{item}</p>
+              </div>
+            </Marble>
+          );
+        }
+
+        return (
+          <article
+            data-motion-reveal
+            key={item}
+            className={`motion-card group relative overflow-hidden rounded-[18px] rounded-br-[26px] border p-5 shadow-[0_16px_38px_rgba(6,42,96,0.10)] hover:shadow-[0_22px_46px_rgba(6,42,96,0.14)] ${
+              isDark
+                ? "border-white/14 bg-[linear-gradient(135deg,#062A60,#0A4F93)] p-6 shadow-[0_18px_42px_rgba(6,42,96,0.18)]"
+                : "border-[#dbe6f0] bg-[linear-gradient(165deg,#ffffff,#edf5fb)]"
+            } ${
+              !isDark && columns === "grid" && index % 3 === 1 ? "lg:-translate-y-1" : ""
+            } ${spanClass}`}
+          >
+            <div
+              className={
+                isDark
+                  ? "absolute inset-0 bg-[radial-gradient(circle_at_100%_0%,rgba(255,255,255,0.12),transparent_28%)]"
+                  : "absolute inset-0 bg-[radial-gradient(circle_at_100%_0%,rgba(0,119,200,0.12),transparent_28%)]"
+              }
+            />
+            <div
+              className={`absolute bottom-0 left-5 right-5 h-[3px] ${
+                isDark ? "bg-[linear-gradient(90deg,#F58220,rgba(255,255,255,0.14))]" : "bg-[linear-gradient(90deg,#F58220,rgba(245,130,32,0.06))]"
+              }`}
+            />
+            <div
+              className={`relative flex ${
+                isStack ? "min-h-0" : isTwoColumn ? "min-h-[5.25rem]" : "min-h-[4.75rem]"
+              } items-start gap-4`}
+            >
+              <WaveListIcon item={item} index={index} variant={isDark ? "dark" : "light"} />
+              <p className={`text-sm font-bold leading-7 ${isDark ? "text-white" : "text-[#33475b]"}`}>{item}</p>
+            </div>
+          </article>
+        );
+      })}
     </div>
   );
+}
+
+export function IconBulletList({
+  items,
+  variant = "light",
+  columns = "single",
+}: {
+  items: readonly string[];
+  variant?: "light" | "dark";
+  columns?: "single" | "two-column";
+}) {
+  const isDark = variant === "dark";
+  const isTwoColumn = columns === "two-column";
+
+  return (
+    <ul data-motion-group className={`grid gap-x-8 gap-y-4 ${isTwoColumn ? "md:grid-cols-2" : ""}`}>
+      {items.map((item, index) => {
+        const removeBorder = !isTwoColumn && index === items.length - 1;
+
+        return (
+          <li
+            data-motion-reveal
+            key={item}
+            className={`flex items-start gap-4 border-b pb-4 ${
+              isDark ? "border-white/14 text-white/82" : "border-[#dbe5ef] text-[#33475b]"
+            } ${removeBorder ? "border-b-0 pb-0" : ""}`}
+          >
+            <WaveListIcon item={item} index={index} variant={isDark ? "dark" : "light"} />
+            <span className="pt-1 text-base font-semibold leading-7">{item}</span>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+function getItemGridColumnsClass(columns: "grid" | "stack" | "two-column", isMarble: boolean) {
+  if (columns === "stack") {
+    return "";
+  }
+
+  if (columns === "two-column") {
+    return isMarble ? "md:grid-cols-2" : "md:grid-cols-2";
+  }
+
+  return isMarble ? "md:grid-cols-2 xl:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-3";
+}
+
+function getItemGridSpanClass(
+  columns: "grid" | "stack" | "two-column",
+  count: number,
+  index: number,
+  isMarble: boolean,
+) {
+  if (columns !== "two-column" || count % 2 === 0 || index !== count - 1) {
+    return "";
+  }
+
+  return isMarble ? "md:col-span-2 xl:col-span-1" : "md:col-span-2";
+}
+
+function WaveListIcon({
+  item,
+  index,
+  variant = "light",
+}: {
+  item: string;
+  index: number;
+  variant?: "light" | "dark";
+}) {
+  const light = variant === "light";
+
+  return (
+    <span
+      aria-hidden="true"
+      className={`mt-0.5 grid shrink-0 place-items-center rounded-full ${
+        light
+          ? "h-10 w-10 border border-[#F58220]/24 bg-[linear-gradient(180deg,#fff7ef,#fff1e4)] text-[#F58220] shadow-[0_8px_18px_rgba(245,130,32,0.12)]"
+          : "h-11 w-11 border border-white/24 bg-white text-[#062A60] shadow-[0_10px_22px_rgba(0,0,0,0.16)]"
+      }`}
+    >
+      {renderWaveItemGlyph(item, index, light ? "h-5 w-5 stroke-[2.2]" : "h-[22px] w-[22px] stroke-[2.2]")}
+    </span>
+  );
+}
+
+function renderWaveItemGlyph(item: string, index: number, className: string) {
+  const Icon = getWaveItemIconComponent(item, index);
+  return <Icon className={className} />;
+}
+
+function getWaveItemIconComponent(item: string, index: number): LucideIcon {
+  const normalized = item.toLowerCase();
+
+  if (normalized.includes("home service") || normalized.includes("hvac") || normalized.includes("plumbing") || normalized.includes("roofing")) {
+    return House;
+  }
+
+  if (normalized.includes("medical") || normalized.includes("dental")) {
+    return Stethoscope;
+  }
+
+  if (normalized.includes("law firm") || normalized.includes("legal")) {
+    return Scale;
+  }
+
+  if (normalized.includes("property management")) {
+    return Building2;
+  }
+
+  if (normalized.includes("contractor") || normalized.includes("field service")) {
+    return HardHat;
+  }
+
+  if (normalized.includes("small and growing") || normalized.includes("operational support")) {
+    return BriefcaseBusiness;
+  }
+
+  if (normalized.includes("virtual receptionist") || normalized.includes("appointment") || normalized.includes("scheduling")) {
+    return Headset;
+  }
+
+  if (normalized.includes("call") || normalized.includes("phone")) {
+    return PhoneCall;
+  }
+
+  if (normalized.includes("email")) {
+    return Mail;
+  }
+
+  if (normalized.includes("message") || normalized.includes("sms") || normalized.includes("text")) {
+    return MessageSquareText;
+  }
+
+  if (normalized.includes("follow-up") || normalized.includes("follow up") || normalized.includes("moves forward")) {
+    return MessageCircleReply;
+  }
+
+  if (normalized.includes("ai") || normalized.includes("automation")) {
+    return Bot;
+  }
+
+  if (normalized.includes("channel") || normalized.includes("communication management") || normalized.includes("brand voice") || normalized.includes("communication systems")) {
+    return Workflow;
+  }
+
+  const fallback = [PhoneCall, Mail, MessageSquareText, CalendarDays, Bot, Workflow];
+  return fallback[index % fallback.length];
 }
 
 export function WaveAreaGrid({ items }: { items: readonly string[] }) {
@@ -205,7 +426,7 @@ export function WaveAreaGrid({ items }: { items: readonly string[] }) {
             contentClassName="flex min-h-[11.5rem] flex-col justify-between"
           >
             <MarbleIcon>
-              <WaveAreaIcon area={item} className="h-8 w-8 text-white" />
+              <WaveAreaIcon area={item} className="h-14 w-14 text-white" />
             </MarbleIcon>
             <div className="mt-7">
               <div className="mb-4 h-px w-14 bg-white/35" />
@@ -217,9 +438,13 @@ export function WaveAreaGrid({ items }: { items: readonly string[] }) {
   );
 }
 
-export function DualCallToAction() {
+export function DualCallToAction({
+  topSpacing = "mt-10",
+}: {
+  topSpacing?: "mt-0" | "mt-4" | "mt-6" | "mt-10";
+}) {
   return (
-    <div data-motion-group className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+    <div data-motion-group className={`${topSpacing} flex flex-col gap-4 sm:flex-row sm:items-center`}>
       <Link
         data-motion-reveal
         href="/contact#lead-form"
@@ -334,23 +559,36 @@ function WaveAreaIcon({ area, className = "h-8 w-8" }: { area: string; className
 export function ProcessSteps({
   steps,
   variant = "light",
+  layout = "stagger",
 }: {
   steps: readonly string[];
   variant?: "light" | "dark";
+  layout?: "stagger" | "compact" | "two-column";
 }) {
   const isDark = variant === "dark";
+  const isCompact = layout === "compact";
+  const isTwoColumn = layout === "two-column";
+  const isStagger = layout === "stagger";
+  const containerWidthClass = isTwoColumn
+    ? "md:grid-cols-2"
+    : isCompact
+      ? "max-w-[44rem]"
+      : "max-w-5xl";
 
   return (
-    <div data-motion-group className="grid gap-4">
+    <div
+      data-motion-group
+      className={`grid ${isCompact ? "gap-3" : "gap-4"} ${containerWidthClass}`}
+    >
       {steps.map((step, index) => (
         <article
           data-motion-reveal
           key={step}
-          className={`motion-card group relative overflow-hidden rounded-[22px] rounded-br-[34px] border p-6 shadow-[0_16px_38px_rgba(6,42,96,0.12)] ${
+          className={`motion-card group relative w-full overflow-hidden rounded-[22px] rounded-br-[34px] border p-6 shadow-[0_16px_38px_rgba(6,42,96,0.12)] ${
             isDark
               ? "border-white/16 bg-white/8 text-white shadow-[0_18px_42px_rgba(0,0,0,0.18)]"
               : "border-[#dce6ef] bg-[linear-gradient(165deg,#ffffff,#edf5fb)] text-[#33475b]"
-          } ${index % 2 === 1 ? "lg:ml-10" : ""}`}
+          } ${isCompact ? "p-5" : ""} ${isStagger && index % 2 === 1 ? "lg:ml-10" : ""}`}
         >
           <div
             className={
@@ -359,23 +597,49 @@ export function ProcessSteps({
                 : "absolute inset-0 bg-[radial-gradient(circle_at_100%_0%,rgba(0,119,200,0.12),transparent_28%)]"
             }
           />
-          <div className="relative grid gap-5 sm:grid-cols-[74px_1fr] sm:items-center">
+          <div className={`relative grid ${isCompact ? "gap-4" : "gap-5"} sm:grid-cols-[74px_1fr] sm:items-center`}>
             <div
               className={
                 isDark
-                  ? "grid h-16 w-16 place-items-center rounded-[20px] rounded-br-[24px] rounded-tl-[24px] border border-white/20 bg-white/10 text-lg font-extrabold text-white"
-                  : "grid h-16 w-16 place-items-center rounded-[20px] rounded-br-[24px] rounded-tl-[24px] bg-[#062A60] text-lg font-extrabold text-white shadow-[0_14px_28px_rgba(6,42,96,0.18)]"
+                  ? `grid ${isCompact ? "h-14 w-14 text-base" : "h-16 w-16 text-lg"} place-items-center rounded-[20px] rounded-br-[24px] rounded-tl-[24px] border border-white/20 bg-white/10 font-extrabold text-white`
+                  : `grid ${isCompact ? "h-14 w-14 text-base" : "h-16 w-16 text-lg"} place-items-center rounded-[20px] rounded-br-[24px] rounded-tl-[24px] bg-[#062A60] font-extrabold text-white shadow-[0_14px_28px_rgba(6,42,96,0.18)]`
               }
             >
               {index + 1}
             </div>
             <div>
-              <div className={`mb-3 h-px w-16 ${isDark ? "bg-white/22" : "bg-[#cddfed]"}`} />
-              <p className={`text-base font-bold leading-7 ${isDark ? "text-white/84" : "text-[#33475b]"}`}>{step}</p>
+              <div className={`mb-3 h-px ${isCompact ? "w-12" : "w-16"} ${isDark ? "bg-white/22" : "bg-[#cddfed]"}`} />
+              <p className={`${isCompact ? "text-[15px]" : "text-base"} font-bold leading-7 ${isDark ? "text-white/84" : "text-[#33475b]"}`}>{step}</p>
             </div>
           </div>
         </article>
       ))}
+    </div>
+  );
+}
+
+export function ProcessSplit({
+  title,
+  text,
+  steps,
+  actions,
+}: {
+  title: string;
+  text: string;
+  steps: readonly string[];
+  actions?: ReactNode;
+}) {
+  return (
+    <div className="grid gap-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+      <div className="space-y-6">
+        <article data-motion-reveal className="motion-card border-l-4 border-[#F58220] bg-white p-7 shadow-[0_18px_45px_rgba(6,42,96,0.12)]">
+          <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#0077C8]">WAVE standard</p>
+          <h3 className="mt-4 text-2xl font-extrabold leading-tight text-[#062A60]">{title}</h3>
+          <p className="mt-4 text-base font-medium leading-8 text-[#4e5f70]">{text}</p>
+        </article>
+        {actions ? <div data-motion-reveal className="pt-2">{actions}</div> : null}
+      </div>
+      <ProcessSteps steps={steps} variant="dark" layout="compact" />
     </div>
   );
 }
@@ -391,6 +655,7 @@ export function PromiseBand() {
         <div data-motion-reveal className="max-w-xl md:justify-self-end">
           <p className="text-base font-bold uppercase tracking-[0.18em] text-[#F58220] md:text-lg">{siteConfig.promise.eyebrow}</p>
           <p className="mt-5 text-base font-medium leading-8 text-white/84">{siteConfig.promise.text}</p>
+          <DualCallToAction />
         </div>
       </div>
     </section>
@@ -399,7 +664,7 @@ export function PromiseBand() {
 
 export function LeadFormSection() {
   return (
-    <section id="lead-form" className="relative overflow-hidden bg-[#062A60] px-5 py-20 text-white lg:px-8 lg:py-28">
+    <section id="lead-form" className="relative overflow-hidden bg-[#062A60] px-5 pb-24 pt-20 text-white lg:px-8 lg:pb-32 lg:pt-28">
       <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(0,119,200,0.20),transparent_42%),radial-gradient(circle_at_72%_16%,rgba(245,130,32,0.24),transparent_30%)]" />
       <div data-motion-group className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
         <div data-motion-reveal className="max-w-xl">
@@ -618,12 +883,14 @@ export function DifferenceSection({
   body,
   items,
   variant = "white",
+  showStandardCard = true,
 }: {
   eyebrow: string;
   title: string;
   body: readonly string[];
   items: readonly string[];
   variant?: "white" | "soft";
+  showStandardCard?: boolean;
 }) {
   const isSoft = variant === "soft";
 
@@ -636,18 +903,20 @@ export function DifferenceSection({
             <div className="max-w-3xl">
               <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#F58220]">{eyebrow}</p>
               <h2 className="mt-4 text-balance text-3xl font-extrabold leading-tight text-[#062A60] md:text-5xl">{title}</h2>
-              <div className="mt-6 space-y-4 text-base font-medium leading-8 text-[#4e5f70]">
-                {body.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
+            <div className="mt-6 space-y-4 text-base font-medium leading-8 text-[#4e5f70]">
+              {body.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
-            <article className="max-w-[29rem] border-l-4 border-[#F58220] bg-white p-7 shadow-[0_18px_45px_rgba(6,42,96,0.12)]">
-              <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#0077C8]">WAVE standard</p>
-              <h3 className="mt-4 text-2xl font-extrabold leading-tight text-[#062A60]">
-                Communication should keep moving after the first touchpoint.
-              </h3>
-            </article>
+          </div>
+            {showStandardCard ? (
+              <article className="max-w-[29rem] border-l-4 border-[#F58220] bg-white p-7 shadow-[0_18px_45px_rgba(6,42,96,0.12)]">
+                <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#0077C8]">WAVE standard</p>
+                <h3 className="mt-4 text-2xl font-extrabold leading-tight text-[#062A60]">
+                  Communication should keep moving after the first touchpoint.
+                </h3>
+              </article>
+            ) : null}
           </div>
           <div className="lg:pt-8">
             <HighlightStack items={items} />
@@ -677,17 +946,42 @@ export function MediaFeature({
   image,
   placeholder,
   align = "right",
+  emphasis = "default",
 }: {
   title: string;
   body: readonly string[];
   image?: { src: string; alt: string };
   placeholder?: { eyebrow: string; title: string; text: string };
   align?: "left" | "right";
+  emphasis?: "default" | "wide-media" | "narrow-media";
 }) {
+  const mediaRatioClass =
+    emphasis === "wide-media"
+      ? "aspect-[17/11]"
+      : emphasis === "narrow-media"
+        ? "aspect-[15/11]"
+        : "aspect-[16/11]";
+  const gridClass =
+    emphasis === "wide-media"
+      ? align === "left"
+        ? "lg:grid-cols-[1.12fr_0.88fr]"
+        : "lg:grid-cols-[0.88fr_1.12fr]"
+      : emphasis === "narrow-media"
+        ? align === "left"
+          ? "lg:grid-cols-[0.92fr_1.08fr]"
+          : "lg:grid-cols-[1.08fr_0.92fr]"
+        : "lg:grid-cols-[1.02fr_0.98fr]";
+
   const media = (
-    <div className="relative aspect-[16/11] overflow-hidden rounded-[22px] rounded-br-[72px] rounded-tl-[72px] border border-[#dbe5ef] bg-white shadow-[0_18px_45px_rgba(6,42,96,0.12)]">
+    <div className={`relative ${mediaRatioClass} overflow-hidden rounded-[22px] rounded-br-[72px] rounded-tl-[72px] border border-[#dbe5ef] bg-white shadow-[0_18px_45px_rgba(6,42,96,0.12)]`}>
       {image ? (
-        <Image src={image.src} alt={image.alt} fill sizes="(min-width: 1024px) 36vw, 100vw" className="object-cover" />
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          sizes={emphasis === "wide-media" ? "(min-width: 1024px) 44vw, 100vw" : "(min-width: 1024px) 36vw, 100vw"}
+          className="object-cover"
+        />
       ) : (
         <div className="relative h-full overflow-hidden bg-[linear-gradient(135deg,#062A60,#0077C8)] p-8 text-white">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.22),transparent_18%),linear-gradient(125deg,transparent_0_34%,rgba(255,255,255,0.12)_34.2%,transparent_34.7%_64%,rgba(245,130,32,0.16)_64.2%,transparent_64.8%)]" />
@@ -713,7 +1007,7 @@ export function MediaFeature({
   );
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+    <div className={`grid gap-8 ${gridClass} lg:items-center`}>
       {align === "left" ? media : copy}
       {align === "left" ? copy : media}
     </div>

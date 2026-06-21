@@ -2,7 +2,15 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import type { ReactNode } from "react";
-import { siteConfig } from "@/content/site";
+import { JsonLd } from "@/components/json-ld";
+import {
+  defaultDescription,
+  defaultOgImage,
+  defaultTitle,
+  professionalServiceSchema,
+  siteUrl,
+  websiteSchema,
+} from "@/lib/seo";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -11,35 +19,64 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://wave-solutions.co"),
-  title: "WAVE Solutions LLC | Professional Answering & Virtual Receptionist Services",
-  description:
-    "Professional answering, virtual receptionist, and communication support services for responsive service-based businesses.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: defaultTitle,
+    template: `%s | WAVE Solutions LLC`,
+  },
+  description: defaultDescription,
+  alternates: {
+    canonical: "/",
+  },
+  keywords: [
+    "answering service",
+    "virtual receptionist",
+    "communication support",
+    "customer follow-up",
+    "service business answering support",
+  ],
+  category: "business services",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "WAVE Solutions LLC",
-    description: "Professional answering and virtual receptionist services for service-based businesses.",
+    title: defaultTitle,
+    description: defaultDescription,
+    url: siteUrl,
+    siteName: "WAVE Solutions LLC",
+    images: [
+      {
+        url: defaultOgImage,
+        width: 1200,
+        height: 630,
+        alt: defaultTitle,
+      },
+    ],
     type: "website",
     locale: "en_US",
   },
-};
-
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: siteConfig.company.name,
-  url: "https://wave-solutions.co",
-  email: siteConfig.company.email,
-  telephone: siteConfig.company.phoneHref,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "PO Box 5041",
-    addressLocality: "Willowick",
-    addressRegion: "OH",
-    postalCode: "44095",
-    addressCountry: "US",
+  twitter: {
+    card: "summary_large_image",
+    title: defaultTitle,
+    description: defaultDescription,
+    images: [defaultOgImage],
   },
-  description:
-    "Professional answering, virtual receptionist, and communication support services for responsive service-based businesses.",
+  applicationName: "WAVE Solutions LLC",
+  creator: "WAVE Solutions LLC",
+  publisher: "WAVE Solutions LLC",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
 };
 
 export default function RootLayout({
@@ -50,10 +87,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={montserrat.variable}>
       <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
+        <JsonLd data={[professionalServiceSchema, websiteSchema]} />
         {children}
       </body>
     </html>
