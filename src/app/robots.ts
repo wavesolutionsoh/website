@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://wave-solutions.co/sitemap.xml",
+    sitemap: "https://website-red-one-65.vercel.app/sitemap.xml",
   };
 }

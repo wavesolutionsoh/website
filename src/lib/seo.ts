@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/content/site";
 
-export const siteUrl = "https://wave-solutions.co";
+export const siteUrl = "https://website-red-one-65.vercel.app";
 export const defaultTitle = "WAVE Solutions LLC | Professional Answering & Virtual Receptionist Services";
 export const defaultDescription =
   "Professional answering, virtual receptionist, and communication support services for responsive service-based businesses.";
