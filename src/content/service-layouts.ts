@@ -66,4 +66,11 @@ export const serviceLayoutPresets: Record<ServiceSlug, ServiceLayoutPreset> = {
     showRelatedCta: false,
     sectionOrder: ["intro", "process", "standards", "related", "promise"],
   },
+  "social-media-communication": {
+    intro: "channel-wide",
+    process: "compact-two-col",
+    standards: "grid-3",
+    showRelatedCta: false,
+    sectionOrder: ["intro", "process", "standards", "related", "promise"],
+  },
 };

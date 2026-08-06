@@ -60,6 +60,18 @@ function getIconPath(slug: string) {
           <path className={iconClass} d="M24 34h-9l-5 4v-8" />
         </>
       );
+    case "social-media-communication":
+      return (
+        <>
+          <path className={iconClass} d="M14 14h16v11H14z" />
+          <path className={iconClass} d="m18 25-4 5v-5" />
+          <path className={iconClass} d="M20 19h5" />
+          <circle className={iconClass} cx="35" cy="14" r="3" />
+          <circle className={iconClass} cx="36" cy="31" r="3" />
+          <circle className={iconClass} cx="17" cy="36" r="3" />
+          <path className={iconClass} d="m32.5 16-11 17M20 35l13-3" />
+        </>
+      );
     default:
       return (
         <>

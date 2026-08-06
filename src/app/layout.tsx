@@ -33,6 +33,7 @@ export const metadata: Metadata = {
     "virtual receptionist",
     "communication support",
     "customer follow-up",
+    "social media communication",
     "service business answering support",
   ],
   category: "business services",

@@ -55,7 +55,7 @@ export default function ContactPage() {
         <div className="relative mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-12">
             <div className="order-1 space-y-4 text-base font-medium leading-8 text-[#4e5f70] lg:order-2">
-              <h2 className="text-3xl font-extrabold leading-tight text-[#062A60] md:text-5xl">Public contact information</h2>
+              <h2 className="text-3xl font-extrabold leading-tight text-[#062A60] md:text-5xl">Contact information</h2>
               <p>{siteConfig.footer.summary}</p>
             </div>
             <div className="order-2 grid gap-5 sm:grid-cols-3 lg:order-3 lg:grid-cols-1">
@@ -87,7 +87,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      <LeadFormSection />
+      <LeadFormSection showCareersNote />
     </SiteFrame>
   );
 }

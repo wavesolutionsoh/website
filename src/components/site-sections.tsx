@@ -94,11 +94,14 @@ export function PageHero({
           {actions}
         </div>
         {aside ?? (
-          <div data-motion-reveal className="motion-card relative overflow-hidden rounded-[18px] rounded-br-[58px] rounded-tl-[58px] border border-white/18 bg-white/10 p-5 shadow-[0_22px_65px_rgba(0,0,0,0.18)]">
+          <div data-motion-reveal>
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#F58220]">WAVE</p>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               {highlights.map((item, index) => (
-                <div key={item} className="flex items-center gap-4 bg-white/10 px-4 py-3.5 text-sm font-bold text-white">
+                <div
+                  key={item}
+                  className="motion-card flex items-center gap-4 rounded-[18px] rounded-br-[26px] border border-white/18 bg-white/10 px-4 py-3.5 text-sm font-bold text-white shadow-[0_16px_38px_rgba(0,0,0,0.14)]"
+                >
                   <WaveListIcon item={item} index={index} variant="dark" />
                   {item}
                 </div>
@@ -662,7 +665,7 @@ export function PromiseBand() {
   );
 }
 
-export function LeadFormSection() {
+export function LeadFormSection({ showCareersNote = false }: { showCareersNote?: boolean } = {}) {
   return (
     <section id="lead-form" className="relative overflow-hidden bg-[#062A60] px-5 pb-24 pt-20 text-white lg:px-8 lg:pb-32 lg:pt-28">
       <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(0,119,200,0.20),transparent_42%),radial-gradient(circle_at_72%_16%,rgba(245,130,32,0.24),transparent_30%)]" />
@@ -676,6 +679,17 @@ export function LeadFormSection() {
           <div className="mt-8 border-l-4 border-[#F58220] bg-white/10 p-6">
             <p className="text-sm font-semibold leading-7 text-white/82">{siteConfig.form.text}</p>
           </div>
+          {showCareersNote ? (
+            <p className="mt-6 text-sm font-medium leading-7 text-white/78">
+              Applying for a job? Send your resume to{" "}
+              <a
+                href={`mailto:${siteConfig.company.email}`}
+                className="font-bold text-white underline decoration-[#F58220] decoration-2 underline-offset-4 hover:text-[#F58220]"
+              >
+                {siteConfig.company.email}
+              </a>
+            </p>
+          ) : null}
         </div>
         <LeadForm config={siteConfig.form} />
       </div>

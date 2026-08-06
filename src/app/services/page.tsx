@@ -7,7 +7,7 @@ import { buildBreadcrumbSchema, buildCollectionPageSchema, buildMetadata } from 
 
 export const metadata: Metadata = buildMetadata({
   title: "Services",
-  description: "Answering services, virtual receptionist services, customer follow-up, AI support, and communication management.",
+  description: "Answering services, virtual receptionist services, customer follow-up, AI support, communication management, and social media communication.",
   path: "/services",
   image: "/images/generated/services-phone-notifications.png",
 });
@@ -19,7 +19,7 @@ export default function ServicesPage() {
         data={[
           buildCollectionPageSchema({
             name: "WAVE Solutions Services",
-            description: "Answering services, virtual receptionist services, customer follow-up, AI support, and communication management.",
+            description: "Answering services, virtual receptionist services, customer follow-up, AI support, communication management, and social media communication.",
             path: "/services",
             items: siteConfig.services.map((service) => ({
               name: service.title,

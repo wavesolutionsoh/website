@@ -4,13 +4,14 @@ import { siteConfig } from "@/content/site";
 export const siteUrl = "https://website-red-one-65.vercel.app";
 export const defaultTitle = "WAVE Solutions LLC | Professional Answering & Virtual Receptionist Services";
 export const defaultDescription =
-  "Professional answering, virtual receptionist, and communication support services for responsive service-based businesses.";
+  "Professional answering, virtual receptionist, social media communication, and customer support services for responsive service-based businesses.";
 export const defaultOgImage = "/images/wave-hero-generated.png";
 export const defaultKeywords = [
   "answering service",
   "virtual receptionist",
   "customer follow-up",
   "communication management",
+  "social media communication",
   "service business support",
   "WAVE Solutions LLC",
 ] as const;

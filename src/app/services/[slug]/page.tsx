@@ -82,6 +82,10 @@ const serviceHeroImages: Record<ServiceSlug, ServiceImageAsset> = {
     src: "/images/communication-management-loop.png",
     alt: "Dotted circular communication loop connecting phone, email, and web icons",
   },
+  "social-media-communication": {
+    src: "/images/generated/service-social-media-hero.png",
+    alt: "Tablet and smartphone organizing social media messages, comments, replies, and routed follow-up cues",
+  },
 };
 
 const serviceFeatureImages: Record<ServiceSlug, ServiceImageAsset> = {
@@ -104,6 +108,10 @@ const serviceFeatureImages: Record<ServiceSlug, ServiceImageAsset> = {
   "communication-management": {
     src: "/images/generated/service-communication-management-secondary.png",
     alt: "Multi-channel communication management dashboard coordinating phone, email, SMS, and web inquiries",
+  },
+  "social-media-communication": {
+    src: "/images/generated/service-social-media-secondary.png",
+    alt: "Communication specialist reviewing, approving, and routing social media customer conversations",
   },
 };
 

@@ -49,27 +49,7 @@ export default function IndustriesPage() {
         }
       />
       <SectionBand title="Businesses that rely on timely communication" variant="soft">
-        <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-12">
-          <div className="relative aspect-[16/11] overflow-hidden rounded-[22px] rounded-br-[72px] rounded-tl-[72px] border border-[#dbe5ef] bg-white shadow-[0_18px_45px_rgba(6,42,96,0.12)]">
-            <Image
-              src="/images/generated/industries-communication-workspace.png"
-              alt="Organized communication workspace with a laptop dashboard, phone, headset, and service-business materials for multiple industries"
-              fill
-              sizes="(min-width: 1024px) 36vw, 100vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,42,96,0.08),transparent_34%),linear-gradient(0deg,rgba(6,42,96,0.16),transparent_44%)]" />
-          </div>
-          <div className="space-y-4 pt-1 text-base font-medium leading-8 text-[#4e5f70]">
-            <h3 className="text-3xl font-extrabold leading-tight text-[#062A60]">
-              The same communication problem shows up across very different service teams.
-            </h3>
-            <p>{siteConfig.industries.body}</p>
-          </div>
-        </div>
-        <div className="mt-10">
-          <ItemGrid items={siteConfig.industries.items} />
-        </div>
+        <ItemGrid items={siteConfig.industries.items} />
         <DualCallToAction />
       </SectionBand>
       <SectionBand eyebrow={siteConfig.servicesIntro.eyebrow} title="Support that can follow the customer conversation" variant="navy">

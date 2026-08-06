@@ -28,6 +28,7 @@ export const siteConfig = {
         { label: "Customer Follow-Up", href: "/services/customer-follow-up" },
         { label: "AI Communication Support", href: "/services/ai-powered-communication-support" },
         { label: "Communication Management", href: "/services/communication-management" },
+        { label: "Social Media Communication", href: "/services/social-media-communication" },
       ],
     },
     { label: "Contact", href: "/contact" },
@@ -55,7 +56,7 @@ export const siteConfig = {
   waveAreas: ["Written", "Automation & AI", "Voice", "Electronic"],
   promise: {
     eyebrow: "Our Promise",
-    heading: "We do not just answer the call.",
+    heading: "We do more than answer the call.",
     text:
       "We help businesses complete the communication loop. WAVE Solutions ensures every customer inquiry receives timely follow-through, helping businesses improve responsiveness, customer satisfaction, and operational efficiency.",
   },
@@ -87,10 +88,10 @@ export const siteConfig = {
   },
   difference: {
     eyebrow: "What Makes Us Different",
-    heading: "Communication completion, not just message capture.",
+    heading: "Communication completion, more than message capture.",
     body: [
       "WAVE Solutions is more than a traditional answering service.",
-      "We focus on communication completion, not just message capture.",
+      "We focus on communication completion, more than message capture.",
     ],
     items: [
       "Live virtual receptionist support",
@@ -189,9 +190,9 @@ export const siteConfig = {
   },
   servicesIntro: {
     eyebrow: "Our Services",
-    heading: "Communication support across phone, email, SMS, and digital systems.",
+    heading: "Communication support across phone, email, SMS, social media, and digital systems.",
     text:
-      "WAVE Solutions provides answering service, virtual receptionist, customer follow-up, AI-powered communication support, and communication management services for businesses that need reliable customer follow-through.",
+      "WAVE Solutions provides answering service, virtual receptionist, customer follow-up, AI-powered communication support, communication management, and social media communication services for businesses that need reliable customer follow-through.",
   },
   services: [
     {
@@ -252,6 +253,18 @@ export const siteConfig = {
         "Updating systems and managing ongoing communication",
         "Multi-channel communication handling",
         "Consistent brand voice across every interaction",
+      ],
+    },
+    {
+      slug: "social-media-communication",
+      icon: "Share2",
+      title: "Social Media Communication",
+      text:
+        "Professional monitoring and response support for customer questions and messages across social media channels, helping your team stay responsive and consistent.",
+      supportPoints: [
+        "Monitoring incoming social media messages and customer inquiries",
+        "Responding in an approved, consistent brand voice",
+        "Routing conversations that need follow-up to the right team",
       ],
     },
   ],
@@ -315,9 +328,9 @@ export const siteConfig = {
   },
   footer: {
     summary:
-      "Professional answering service and virtual receptionist solutions for businesses that need responsive, customer-focused communication support.",
+      "Professional answering, virtual receptionist, and social media communication solutions for businesses that need responsive, customer-focused support.",
     serviceNote:
-      "WAVE helps service-based teams stay responsive with professional call answering, message handling, appointment coordination, and practical communication support.",
+      "WAVE helps service-based teams stay responsive with call answering, message handling, appointment coordination, social media communication, and practical customer support.",
   },
 } as const;
 

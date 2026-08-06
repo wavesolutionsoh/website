@@ -23,9 +23,6 @@ function TopBar() {
   return (
     <div className="bg-[#062A60] text-white">
       <div data-motion-group className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2 text-[11px] font-semibold leading-4 sm:px-5 sm:py-3 sm:text-xs lg:px-8">
-        <span data-motion-reveal className="hidden sm:block">
-          {siteConfig.company.location}
-        </span>
         <div data-motion-reveal className="flex flex-wrap items-center gap-x-4 gap-y-1 sm:ml-auto sm:gap-x-5">
           <a href={`mailto:${siteConfig.company.email}`} className="hover:text-[#F58220]">
             {siteConfig.company.email}
@@ -43,8 +40,8 @@ function SiteHeader() {
   return (
     <header className="border-b border-[#d9e1ea] bg-white">
       <div data-motion-group className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:min-h-24 sm:gap-5 sm:px-5 sm:py-4 lg:min-h-28 lg:px-8">
-        <Link data-motion-reveal href="/" className="relative block h-14 w-32 shrink-0 sm:h-16 sm:w-36 lg:h-20 lg:w-44" aria-label={`${siteConfig.company.name} home`}>
-          <Image src="/images/wave-logo.png" alt={siteConfig.company.name} fill priority sizes="176px" className="object-contain object-left" />
+        <Link data-motion-reveal href="/" className="relative block h-20 w-48 shrink-0 sm:h-24 sm:w-52 lg:h-[7.5rem] lg:w-[16.5rem]" aria-label={`${siteConfig.company.name} home`}>
+          <Image src="/images/wave-logo.png" alt={siteConfig.company.name} fill priority sizes="264px" className="object-contain object-left" />
         </Link>
         <nav data-motion-reveal className="hidden items-center gap-5 text-xs font-bold uppercase tracking-[0.08em] text-[#243a53] lg:flex xl:gap-7 xl:text-sm">
           {siteConfig.navigation.map((item) => (
