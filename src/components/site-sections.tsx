@@ -941,6 +941,56 @@ export function DifferenceSection({
   );
 }
 
+const affiliations = [
+  {
+    name: "Willoughby Western Lake County Chamber of Commerce",
+    image: "/images/affiliation-willowick-chamber.jpg",
+  },
+  {
+    name: "Association of TeleServices International",
+    image: "/images/affiliation-atsi.jpg",
+  },
+  {
+    name: "Women Owned Business",
+    image: "/images/affiliation-women-owned.jpg",
+  },
+  {
+    name: "TEAM SNUG — StarTel National Users Group",
+    image: "/images/affiliation-team-snug.jpg",
+  },
+] as const;
+
+export function AffiliationsSection() {
+  return (
+    <section className="relative overflow-hidden bg-white px-5 py-16 lg:px-8 lg:py-24">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_84%_16%,rgba(0,119,200,0.09),transparent_24%),linear-gradient(180deg,rgba(245,247,251,0.72),rgba(255,255,255,0)_48%)]" />
+      <div className="relative mx-auto max-w-7xl">
+        <div data-motion-reveal className="max-w-3xl">
+          <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#F58220]">Connected by service</p>
+          <h2 className="mt-4 text-balance text-3xl font-extrabold leading-tight text-[#062A60] md:text-5xl">Associations &amp; affiliations</h2>
+          <p className="mt-6 text-base font-medium leading-8 text-[#4e5f70]">
+            WAVE is proud to stay connected to the professional, technical, and local business communities we serve.
+          </p>
+        </div>
+        <div data-motion-group className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          {affiliations.map((affiliation) => (
+            <article
+              data-motion-reveal
+              key={affiliation.name}
+              className="group relative flex min-h-[13rem] items-center justify-center overflow-hidden rounded-[20px] rounded-br-[34px] border border-[#d9e5ef] bg-[linear-gradient(165deg,#ffffff,#eef5fb)] p-6 shadow-[0_16px_38px_rgba(6,42,96,0.12)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_54px_rgba(6,42,96,0.17)]"
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_0%,rgba(0,119,200,0.10),transparent_30%),linear-gradient(180deg,rgba(255,255,255,0.72),transparent_40%)]" />
+              <div className="relative h-28 w-full">
+                <Image src={affiliation.image} alt={affiliation.name} fill sizes="(min-width: 1280px) 18vw, (min-width: 640px) 40vw, 82vw" className="object-contain mix-blend-multiply" />
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function getHighlightCardLayout(index: number) {
   const layouts = [
     "w-full md:w-fit md:max-w-[27rem] lg:ml-0",

@@ -1,6 +1,6 @@
 import { JsonLd } from "@/components/json-ld";
 import { SiteFrame } from "@/components/site-chrome";
-import { ChallengeBoard, DifferenceSection, HomeHero, LeadFormSection, PromiseBand, SectionBand, ServiceGrid } from "@/components/site-sections";
+import { AffiliationsSection, ChallengeBoard, DifferenceSection, HomeHero, LeadFormSection, PromiseBand, SectionBand, ServiceGrid } from "@/components/site-sections";
 import { siteConfig } from "@/content/site";
 import { buildWebPageSchema, defaultDescription, defaultTitle } from "@/lib/seo";
 
@@ -32,6 +32,7 @@ export default function Home() {
         items={siteConfig.difference.items}
         variant="soft"
       />
+      <AffiliationsSection />
       <LeadFormSection />
     </SiteFrame>
   );
