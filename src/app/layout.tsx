@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import type { ReactNode } from "react";
 import { JsonLd } from "@/components/json-ld";
@@ -88,14 +87,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={montserrat.variable}>
-      <body>
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-JE5XKCSG13" strategy="beforeInteractive" />
-        <Script id="google-analytics" strategy="beforeInteractive">
-          {`window.dataLayer = window.dataLayer || [];
+      <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JE5XKCSG13" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-JE5XKCSG13');`}
-        </Script>
+gtag('config', 'G-JE5XKCSG13');`,
+          }}
+        />
+      </head>
+      <body>
         <JsonLd data={[professionalServiceSchema, websiteSchema]} />
         {children}
       </body>
