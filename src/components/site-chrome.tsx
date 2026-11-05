@@ -154,6 +154,11 @@ function SiteFooter() {
           </nav>
         </div>
       </div>
+      <p className="mx-auto mt-10 max-w-7xl border-t border-[#d9e1ea] pt-5 text-sm text-[#4e5f70]">
+        <a href="https://tothedesigner.com/" className="underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">
+          Designed by ToTheDesigner.com
+        </a>
+      </p>
     </footer>
   );
 }
